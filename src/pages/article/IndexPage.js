@@ -5,8 +5,9 @@ import {Outlet} from "react-router-dom";
 function IndexPage(props) {
     return (
         <BasicLayout>
-            index
-            <Outlet/>
+            <div className={'container pt-5 d-flex justify-content-center'}>
+                <Outlet/>
+            </div>
 
         </BasicLayout>
     );
