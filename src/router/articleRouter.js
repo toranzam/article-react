@@ -1,8 +1,13 @@
 import {lazy, Suspense} from "react";
 import ArticleDetailPage from "../pages/article/ArticleDetailPage";
 
-const Loading = <div>Loading...</div>
-const List = lazy(() => import('../pages/article/ArticleListPage') )
+const Loading =
+    <div className={'container d-flex justify-content-center pt-5'}>
+        <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </div>
+    </div>
+const List = lazy(() => import('../pages/article/ArticleListPage'))
 const Detail = lazy(() => import('../pages/article/ArticleDetailPage'))
 
 
