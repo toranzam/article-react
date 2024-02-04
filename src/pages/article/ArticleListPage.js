@@ -19,22 +19,22 @@ const initState = {
 
 function ArticleListPage(props) {
 
+    /* api 로 가져온 데이터*/
     const [serverData, setServerData] = useState(initState)
 
-    // 쿼리스트링 추출
+    /* 쿼리스트링 추출 */
     const [queryParams] = useSearchParams()
 
     const page = getParam(queryParams.get('page'), 1)
     const size = getParam(queryParams.get('size'), 10)
 
-
+    /* page, size 가 변경되면 데이터 가져오기 */
     useEffect(() => {
 
         getList({page, size})
             .then(res => {
                 console.log(res)
                 setServerData(res)
-
             })
 
     }, [page, size]);
@@ -59,7 +59,6 @@ function ArticleListPage(props) {
                     <td className={'col-2'}>{article.dueDate}</td>
                 </tr>
             )}
-
             </tbody>
         </table>
     );
