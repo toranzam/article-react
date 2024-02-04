@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useSearchParams} from "react-router-dom";
+import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
 import {getList} from "../../api/articleApi";
 
 
@@ -28,6 +28,8 @@ function ArticleListPage(props) {
     const page = getParam(queryParams.get('page'), 1)
     const size = getParam(queryParams.get('size'), 10)
 
+    const queryStr =createSearchParams({page:page, size:size}).toString()
+
     /* page, size 가 변경되면 데이터 가져오기 */
     useEffect(() => {
 
@@ -39,6 +41,14 @@ function ArticleListPage(props) {
 
     }, [page, size]);
 
+    const navigate = useNavigate()
+
+    const moveToDetail = (id) => {
+        navigate({
+            pathname:`/article/${id}`,
+            search:queryStr
+        })
+    }
 
     return (
         <table className="table table-striped">
@@ -54,7 +64,7 @@ function ArticleListPage(props) {
             {serverData.dtoList.map(article =>
                 <tr key={article.id}>
                     <th className={'col-1'}>{article.id}</th>
-                    <td className={'col-7'}>{article.title}</td>
+                    <td className={'col-7'} onClick={() => moveToDetail(article.id)}>{article.title}</td>
                     <td className={'col-2'}>{article.writer}</td>
                     <td className={'col-2'}>{article.dueDate}</td>
                 </tr>
