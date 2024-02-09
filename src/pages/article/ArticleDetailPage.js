@@ -1,8 +1,12 @@
 import React from 'react';
+import ArticleDetailComponent from "../../components/ArticleDetailComponent";
 
 function ArticleDetailPage(props) {
     return (
-        <div>article Detail</div>
+        <div>
+            <ArticleDetailComponent/>
+        </div>
+
     );
 
 }
