@@ -10,6 +10,7 @@ const Loading =
     </div>
 const Main = lazy(() => import ('../pages/MainPage'))
 const ArticleIndex = lazy(() => import('../pages/article/IndexPage'))
+const BookIndex = lazy(() => import('../pages/book/IndexPage'))
 
 
 const root = createBrowserRouter([
@@ -21,6 +22,10 @@ const root = createBrowserRouter([
         path: 'article',
         element: <Suspense fallback={Loading}><ArticleIndex/></Suspense>,
         children: articleRouter()
+    },
+    {
+        path: 'book',
+        element: <Suspense fallback={Loading}><BookIndex/></Suspense>
     }
 
 ])
