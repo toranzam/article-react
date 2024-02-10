@@ -27,7 +27,7 @@ function ArticleListPage(props) {
     const page = getParam(queryParams.get('page'), 1)
     const size = getParam(queryParams.get('size'), 10)
 
-    const queryStr = createSearchParams({page:page, size:size}).toString()
+    const queryStr = createSearchParams({page: page, size: size}).toString()
 
     /* page, size 가 변경되면 데이터 가져오기 */
     useEffect(() => {
@@ -37,6 +37,9 @@ function ArticleListPage(props) {
                 console.log(res)
                 setServerData(res)
             })
+            .catch(res => {
+                console.log("데이터를 가져오는데 실패하였습니다.")
+            })
 
     }, [page, size]);
 
@@ -44,8 +47,8 @@ function ArticleListPage(props) {
 
     const onClickToDetail = (id) => {
         navigate({
-            pathname:`/article/${id}`,
-            search:queryStr
+            pathname: `/article/${id}`,
+            search: queryStr
         })
     }
 
@@ -60,14 +63,16 @@ function ArticleListPage(props) {
             </tr>
             </thead>
             <tbody>
-            {serverData.dtoList.map(article =>
-                <tr key={article.id}>
-                    <th className={'col-1'}>{article.id}</th>
-                    <td className={'col-7'} onClick={() => onClickToDetail(article.id)}>{article.title}</td>
-                    <td className={'col-2'}>{article.writer}</td>
-                    <td className={'col-2'}>{article.dueDate}</td>
-                </tr>
-            )}
+            {
+                serverData.dtoList.map(article =>
+                    <tr key={article.id}>
+                        <th className={'col-1'}>{article.id}</th>
+                        <td className={'col-7'} onClick={() => onClickToDetail(article.id)}>{article.title}</td>
+                        <td className={'col-2'}>{article.writer}</td>
+                        <td className={'col-2'}>{article.dueDate}</td>
+                    </tr>
+                )
+            }
             </tbody>
         </table>
     );
