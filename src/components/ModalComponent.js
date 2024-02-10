@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
 
 
 
 
-function ModalComponent({show, handleClose, handleChaneArticle, article}) {
+function ModalComponent({show, handleClose, handleChaneArticle, article, handleSubmit}) {
 
     return (
 
         <Modal show={show} onHide={handleClose} centered>
             <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>글쓰기</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
@@ -38,7 +38,7 @@ function ModalComponent({show, handleClose, handleChaneArticle, article}) {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={handleClose}>
+                <Button variant="primary" onClick={handleSubmit}>
                     등록
                 </Button>
             </Modal.Footer>

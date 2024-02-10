@@ -12,7 +12,7 @@ const getParam = (param, defaultValue) => {
 
 }
 
-const initState = {
+const initServerData = {
     dtoList: [],
 }
 
@@ -26,7 +26,7 @@ const initArticle = {
 function ArticleListPage(props) {
 
     /* api 로 가져온 데이터*/
-    const [serverData, setServerData] = useState(initState)
+    const [serverData, setServerData] = useState(initServerData)
 
     const [article, setArticle] = useState(initArticle)
 
@@ -70,16 +70,27 @@ function ArticleListPage(props) {
         setShow(true)
     }
 
-    const handleClose = () => {
+    const handleSubmit = () => {
         postAdd(article)
             .then(res => {
-                console.log('성공')
+                setShow(false)
+                setArticle({...initArticle})
+                console.log('postAdd 성공')
+
+                getList(page, size)
+                    .then( res => {
+                        setServerData(res)
+                        console.log('getList 성공')
+                    })
+                    .catch( res => {
+                        console.log('데이터를 가져오는데 실패하였습니다.')
+                    })
+
             })
             .catch(res => {
                 console.log('실패')
             })
-        setShow(false)
-        setArticle({...initArticle})
+
 
         getList({page, size})
             .then(res => {
@@ -90,6 +101,11 @@ function ArticleListPage(props) {
                 console.log("데이터를 가져오는데 실패하였습니다.")
             })
 
+    }
+
+    const handleClose = () =>{
+
+        setShow(false)
 
     }
 
@@ -135,7 +151,12 @@ function ArticleListPage(props) {
                 </tbody>
             </table>
 
-            <ModalCompoenent show={show} handleClose={handleClose} handleChaneArticle={handleChaneArticle} article={article}/>
+            <ModalCompoenent
+                show={show}
+                handleSubmit={handleSubmit}
+                handleClose={handleClose}
+                handleChaneArticle={handleChaneArticle}
+                article={article}/>
         </>
     );
 }
