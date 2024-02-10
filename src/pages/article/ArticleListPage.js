@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
-import {getList} from "../../api/articleApi";
+import {getList, postAdd} from "../../api/articleApi";
+import ModalCompoenent from "../../components/ModalComponent";
 
 
 const getParam = (param, defaultValue) => {
@@ -16,10 +17,20 @@ const initState = {
 }
 
 
+const initArticle = {
+    title: '',
+    content: ''
+}
+
+
 function ArticleListPage(props) {
 
     /* api 로 가져온 데이터*/
     const [serverData, setServerData] = useState(initState)
+
+    const [article, setArticle] = useState(initArticle)
+
+    const [show, setShow] = useState(false)
 
     /* 쿼리스트링 추출 */
     const [queryParams] = useSearchParams()
@@ -43,7 +54,9 @@ function ArticleListPage(props) {
 
     }, [page, size]);
 
+
     const navigate = useNavigate()
+
 
     const onClickToDetail = (id) => {
         navigate({
@@ -52,29 +65,78 @@ function ArticleListPage(props) {
         })
     }
 
+
+    const handleShow = () => {
+        setShow(true)
+    }
+
+    const handleClose = () => {
+        postAdd(article)
+            .then(res => {
+                console.log('성공')
+            })
+            .catch(res => {
+                console.log('실패')
+            })
+        setShow(false)
+        setArticle({...initArticle})
+
+        getList({page, size})
+            .then(res => {
+                console.log(res)
+                setServerData(res)
+            })
+            .catch(res => {
+                console.log("데이터를 가져오는데 실패하였습니다.")
+            })
+
+
+    }
+
+
+    const handleChaneArticle = (event) => {
+
+        article[event.target.name] = event.target.value
+
+        setArticle({...article})
+
+        console.log(article)
+
+    }
+
+
+
     return (
-        <table className="table table-striped">
-            <thead>
-            <tr>
-                <th className={'col-1'}>id</th>
-                <th className={'col-7'}>제목</th>
-                <th className={'col-2'}>작성자</th>
-                <th className={'col-2'}>작성일</th>
-            </tr>
-            </thead>
-            <tbody>
-            {
-                serverData.dtoList.map(article =>
-                    <tr key={article.id}>
-                        <th className={'col-1'}>{article.id}</th>
-                        <td className={'col-7'} onClick={() => onClickToDetail(article.id)}>{article.title}</td>
-                        <td className={'col-2'}>{article.writer}</td>
-                        <td className={'col-2'}>{article.dueDate}</td>
-                    </tr>
-                )
-            }
-            </tbody>
-        </table>
+        <>
+            <div className={'d-flex justify-content-end'}>
+                <button className={'btn btn-primary'} onClick={handleShow}>새 게시글</button>
+            </div>
+
+            <table className="table table-striped">
+                <thead>
+                <tr>
+                    <th className={'col-1'}>id</th>
+                    <th className={'col-7'}>제목</th>
+                    <th className={'col-2'}>작성자</th>
+                    <th className={'col-2'}>작성일</th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    serverData.dtoList.map(a =>
+                        <tr key={a.id}>
+                            <th className={'col-1'}>{a.id}</th>
+                            <td className={'col-7'} onClick={() => onClickToDetail(a.id)}>{a.title}</td>
+                            <td className={'col-2'}>{a.author}</td>
+                            <td className={'col-2'}>{a.localDate}</td>
+                        </tr>
+                    )
+                }
+                </tbody>
+            </table>
+
+            <ModalCompoenent show={show} handleClose={handleClose} handleChaneArticle={handleChaneArticle} article={article}/>
+        </>
     );
 }
 
