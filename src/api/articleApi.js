@@ -16,6 +16,13 @@ export const getList = async (pageParam) => {
 
 }
 
+export const getOne = async (id) => {
+
+    const res = await axios.get(`${prefix}/${id}`)
+
+    return res.data
+}
+
 export const postAdd = async (article) => {
 
     const res = await axios.post(`${prefix}`, article)
