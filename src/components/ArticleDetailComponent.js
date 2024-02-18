@@ -1,19 +1,50 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {Link, useParams} from "react-router-dom";
+import {getOne} from "../api/articleApi";
+
+
+const initState = {
+    id: '',
+    title: '',
+    content: '',
+    author: '',
+    localDate: '',
+}
 
 function ArticleDetailComponent(props) {
+
+    const [serverData, setServerData] = useState(initState)
+
+    const {id} = useParams()
+
+
+    useEffect(() => {
+
+
+        getOne(id)
+            .then(res => {
+                setServerData(res)
+                console.log("요청 성공")
+
+            })
+            .catch(res => {
+                console.log(res)
+                console.log("요청 실패")
+
+            })
+    }, []);
 
     return (
         <div>
             <div className={'d-flex justify-content-center '}>
                 <div className={'d-flex justify-content-between w-75 p-4 shadow rounded'}>
                     <div className={'d-flex flex-column gap-2'}>
-                        <h2>제목</h2>
-                        <p>content</p>
+                        <h2>{serverData.title}</h2>
+                        <p>{serverData.content}</p>
                     </div>
                     <div className={'d-flex flex-column align-items-md-end'}>
                         <p>작성자:홍길동</p>
-                        <time>2024.2.4</time>
+                        <time>{serverData.localDate}</time>
                     </div>
                 </div>
             </div>
