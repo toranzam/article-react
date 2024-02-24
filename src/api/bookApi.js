@@ -1,28 +1,16 @@
 import axios from "axios";
 
 
-const API_SERVER_HOST = 'https://openapi.naver.com'
+const API_SERVER_HOST = 'http://localhost:8080'
 
-// const prefix = API_SERVER_HOST + '/v1/search/book.json'
+const prefix = API_SERVER_HOST + '/api/book/list'
 
-const prefix = '/v1/search/book.json'
-
-
-export const getBook = async (query) => {
-
-    // const headers = {
-    //     'X-Naver-Client-Id' : 'L123ZF6QF0ufW8fyy30z',
-    //     'X-Naver-Client-Secret' : 'FEwOuaCScR'
-    // }
+export const getBookList = async (query) => {
 
     const res = await axios.get(
         `${prefix}`,
         {
             params: {query},
-            headers: {
-                'X-Naver-Client-Id': 'L123ZF6QF0ufW8fyy30z',
-                'X-Naver-Client-Secret': 'FEwOuaCScR'
-            }
         }
     )
 
