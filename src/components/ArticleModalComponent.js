@@ -4,7 +4,7 @@ import {Button, Form, Modal} from "react-bootstrap";
 
 
 
-function ModalComponent({show, handleClose, handleChaneArticle, article, handleSubmit}) {
+function ArticleModalComponent({show, handleClose, handleChaneArticle, article, handleSubmit}) {
 
     return (
 
@@ -47,4 +47,4 @@ function ModalComponent({show, handleClose, handleChaneArticle, article, handleS
     );
 }
 
-export default ModalComponent;
+export default ArticleModalComponent;

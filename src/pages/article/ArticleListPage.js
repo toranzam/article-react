@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
 import {getList, postAdd} from "../../api/articleApi";
-import ModalComponent from "../../components/ModalComponent";
+import ArticleModalComponent from "../../components/ArticleModalComponent";
 
 
 const getParam = (param, defaultValue) => {
@@ -151,7 +151,7 @@ function ArticleListPage(props) {
                 </tbody>
             </table>
 
-            <ModalComponent
+            <ArticleModalComponent
                 show={show}
                 handleSubmit={handleSubmit}
                 handleClose={handleClose}

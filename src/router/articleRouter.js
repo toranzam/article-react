@@ -1,5 +1,4 @@
 import {lazy, Suspense} from "react";
-import ArticleDetailPage from "../pages/article/ArticleDetailPage";
 
 const Loading =
     <div className={'container d-flex justify-content-center pt-5'}>

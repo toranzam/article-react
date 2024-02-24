@@ -17,3 +17,15 @@ export const getBookList = async (query) => {
     return res.data
 
 }
+
+export const getBook = async (bookName) => {
+
+    const res = await axios.get(
+        `${prefix}`,
+        {
+            params: {bookName}
+        }
+    )
+
+    return res.data
+}
