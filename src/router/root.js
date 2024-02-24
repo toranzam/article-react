@@ -1,6 +1,7 @@
 import {createBrowserRouter} from "react-router-dom";
 import {lazy, Suspense} from "react";
 import articleRouter from "./articleRouter";
+import bookRouter from "./bookRouter";
 
 const Loading =
     <div className={'container d-flex justify-content-center pt-5'}>
@@ -25,7 +26,8 @@ const root = createBrowserRouter([
     },
     {
         path: 'book',
-        element: <Suspense fallback={Loading}><BookIndex/></Suspense>
+        element: <Suspense fallback={Loading}><BookIndex/></Suspense>,
+        children: bookRouter()
     }
 
 ])
