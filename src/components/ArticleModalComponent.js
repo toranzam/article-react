@@ -2,13 +2,11 @@ import React from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
 
 
-
-
 function ArticleModalComponent({show, handleClose, handleChaneArticle, article, handleSubmit}) {
 
     return (
 
-        <Modal show={show} onHide={handleClose} centered>
+        <Modal show={show} onHide={handleClose} size={'lg'} centered>
             <Modal.Header closeButton>
                 <Modal.Title>글쓰기</Modal.Title>
             </Modal.Header>
@@ -17,9 +15,8 @@ function ArticleModalComponent({show, handleClose, handleChaneArticle, article, 
                     <Form.Group className="mb-3">
                         <Form.Label>제목</Form.Label>
                         <Form.Control
-                            type='text'
-                            placeholder=''
                             autoFocus
+                            type='text'
                             value={article.title}
                             name={'title'}
                             onChange={handleChaneArticle}

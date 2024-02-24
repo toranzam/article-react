@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 
-import BasicLayout from "../../layouts/BasicLayout";
 import {getBookList} from "../../api/bookApi";
-import {Button, Card} from "react-bootstrap";
 import BookModalComponent from "../../components/BookModalComponent";
 
 
