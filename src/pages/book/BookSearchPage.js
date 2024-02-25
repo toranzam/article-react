@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import {getBookList} from "../../api/bookApi";
-import BookModalComponent from "../../components/BookModalComponent";
+import BookModalComponent from "../../components/modal/BookModalComponent";
 import {useNavigate} from "react-router-dom";
 
 

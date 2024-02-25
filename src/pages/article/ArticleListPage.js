@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {createSearchParams, useNavigate, useSearchParams} from "react-router-dom";
 import {getList, postAdd} from "../../api/articleApi";
-import ArticleModalComponent from "../../components/ArticleModalComponent";
+import ArticleModalComponent from "../../components/modal/ArticleModalComponent";
 
 
 const getParam = (param, defaultValue) => {
