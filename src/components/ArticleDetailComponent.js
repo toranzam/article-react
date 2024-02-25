@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams} from "react-router-dom";
+import {createSearchParams, Link, useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {getOne} from "../api/articleApi";
 
 
@@ -17,10 +17,31 @@ function ArticleDetailComponent(props) {
 
     const {id} = useParams()
 
+    const navigate = useNavigate()
+
+    const [queryParams] = useSearchParams()
+
+    const queryStr = createSearchParams(
+        {
+            page: queryParams.get('page'),
+            size: queryParams.get('size')
+        }).toString()
+
+    const handleMoveToArticle = () => {
+        if (queryParams.size === 0) {
+            navigate({
+                pathname: '/article',
+            })
+        } else {
+            navigate({
+                pathname: '/article',
+                search: queryStr
+            })
+        }
+    }
+
 
     useEffect(() => {
-
-
         getOne(id)
             .then(res => {
                 setServerData(res)
@@ -51,7 +72,7 @@ function ArticleDetailComponent(props) {
             <div className={'d-flex justify-content-center pt-2 '}>
                 <div className={'w-75 d-flex justify-content-between'}>
                     <div>
-                        <Link to={'/article'} className={'btn btn-primary'}>목록</Link>
+                        <a onClick={handleMoveToArticle} className={'btn btn-primary'}>목록</a>
                     </div>
                     <div className={'d-flex gap-2'}>
                         <button className={'btn btn-danger'}>삭제</button>

@@ -59,10 +59,17 @@ function ArticleListPage(props) {
 
 
     const onClickToDetail = (id) => {
-        navigate({
-            pathname: `/article/${id}`,
-            search: queryStr
-        })
+        if(page === 1 && size === 10){
+            navigate({
+                pathname: `/article/${id}`,
+            })
+        } else {
+            navigate({
+                pathname: `/article/${id}`,
+                search: queryStr
+            })
+        }
+
     }
 
 
