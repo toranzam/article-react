@@ -1,10 +1,10 @@
 import React from 'react';
 import NavBarComponent from "../components/menu/NavBarComponent";
 
-function BasicLayout({children}) {
+function BasicLayout({children, active}) {
     return (
         <>
-            <NavBarComponent/>
+            <NavBarComponent active={active}/>
             {children}
 
 

@@ -4,7 +4,7 @@ import {Outlet} from "react-router-dom";
 
 function IndexPage(props) {
     return (
-        <BasicLayout>
+        <BasicLayout active={1}>
             <div className={'pt-5 container justify-content-center'}>
                 <Outlet/>
             </div>
