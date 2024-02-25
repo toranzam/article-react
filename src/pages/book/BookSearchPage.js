@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 import {getBookList} from "../../api/bookApi";
 import BookModalComponent from "../../components/BookModalComponent";
+import {useNavigate} from "react-router-dom";
 
 
 const initServerData = {
@@ -28,6 +29,8 @@ function BookSearchPage(props) {
         description: '',
     });
 
+    const navigate = useNavigate()
+
 
     const handleShow = (item) => {
         setShow(true)
@@ -35,13 +38,15 @@ function BookSearchPage(props) {
 
     }
 
-    const handleClose = () =>{
+    const handleClose = () => {
         setShow(false)
 
     }
 
     const handleSubmit = () => {
-
+        navigate({
+            pathname: '/book/new',
+        })
     }
 
     return (

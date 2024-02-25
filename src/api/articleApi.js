@@ -1,5 +1,4 @@
 import axios from "axios";
-import async from "async";
 
 
 const API_SERVER_HOST = 'http://localhost:8080'
