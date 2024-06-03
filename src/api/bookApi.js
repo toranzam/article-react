@@ -5,12 +5,14 @@ const API_SERVER_HOST = 'http://localhost:8080'
 
 const prefix = API_SERVER_HOST + '/api/book/list'
 
-export const getBookList = async (query) => {
+const prefix2 = API_SERVER_HOST + '/api/book/search'
+
+export const getBookList = async (bookName) => {
 
     const res = await axios.get(
         `${prefix}`,
         {
-            params: {query},
+            params: {bookName},
         }
     )
 
@@ -18,12 +20,12 @@ export const getBookList = async (query) => {
 
 }
 
-export const getBook = async (bookName) => {
+export const getBook = async (isbn) => {
 
     const res = await axios.get(
-        `${prefix}`,
+        `${prefix2}`,
         {
-            params: {bookName}
+            params: {isbn}
         }
     )
 
