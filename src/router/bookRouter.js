@@ -19,7 +19,7 @@ const bookRouter = () => {
             element: <Suspense fallback={Loading}><Search/></Suspense>
         },
         {
-            path: 'new',
+            path: 'new/:isbn',
             element: <Suspense fallback={Loading}><CreateBookReport/></Suspense>
         },
 
