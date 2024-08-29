@@ -19,7 +19,7 @@ const initServerData = {
 
 const initArticle = {
     title: '',
-    content: ''
+    content: '',
 }
 
 
@@ -28,7 +28,7 @@ function ArticleListPage(props) {
     /* api 로 가져온 데이터*/
     const [serverData, setServerData] = useState(initServerData)
 
-    const [article, setArticle] = useState(initArticle)
+    const [article, setArticle] = useState({...initArticle})
 
     const [show, setShow] = useState(false)
 
@@ -59,7 +59,7 @@ function ArticleListPage(props) {
 
 
     const onClickToDetail = (id) => {
-        if(page === 1 && size === 10){
+        if (page === 1 && size === 10) {
             navigate({
                 pathname: `/article/${id}`,
             })
@@ -77,7 +77,7 @@ function ArticleListPage(props) {
         setShow(true)
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         postAdd(article)
             .then(res => {
                 setShow(false)
@@ -85,11 +85,15 @@ function ArticleListPage(props) {
                 console.log('postAdd 성공')
 
                 getList(page, size)
-                    .then( res => {
+                    .then(res => {
                         setServerData(res)
+
+
                         console.log('getList 성공')
+
+
                     })
-                    .catch( res => {
+                    .catch(res => {
                         console.log('데이터를 가져오는데 실패하였습니다.')
                     })
 
@@ -99,18 +103,18 @@ function ArticleListPage(props) {
             })
 
 
-        getList({page, size})
-            .then(res => {
-                console.log(res)
-                setServerData(res)
-            })
-            .catch(res => {
-                console.log("데이터를 가져오는데 실패하였습니다.")
-            })
+        // getList({page, size})
+        //     .then(res => {
+        //         console.log(res)
+        //         setServerData(res)
+        //     })
+        //     .catch(res => {
+        //         console.log("데이터를 가져오는데 실패하였습니다.")
+        //     })
 
     }
 
-    const handleClose = () =>{
+    const handleClose = () => {
 
         setShow(false)
 
@@ -126,7 +130,6 @@ function ArticleListPage(props) {
         console.log(article)
 
     }
-
 
 
     return (

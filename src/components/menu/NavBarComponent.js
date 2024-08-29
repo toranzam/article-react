@@ -8,7 +8,7 @@ function NavBarComponent({active}) {
 
 
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav className="navbar navbar-expand-sm bg-body-tertiary">
             <div className="container-fluid">
                 <Link to={'../'} className="navbar-brand" href="#">ArticleApp</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -19,10 +19,14 @@ function NavBarComponent({active}) {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link to={'/article'} className={`nav-link ${active === 1 ? "active" : null}` }>Article</Link>
+                            <Link to={'/article'}
+                                  className={`nav-link ${active === 1 ? "active" : null}`}>Article</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to={'/book'}  className={`nav-link ${active === 2 ? "active" : null}` }>Book</Link>
+                            <Link to={'/book'} className={`nav-link ${active === 2 ? "active" : null}`}>BookSearch</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={'/bookReport'} className={`nav-link ${active === 3 ? "active" : null}`}>BookReport</Link>
                         </li>
 
 

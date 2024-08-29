@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 
-import {getBookList} from "../../api/bookApi";
+import {getBookByIsbn, getBookList} from "../../api/bookApi";
 import BookModalComponent from "../../components/modal/BookModalComponent";
 import {useNavigate} from "react-router-dom";
+import createBookReportPage from "./CreateBookReportPage";
 
 
 const initServerData = {
@@ -27,6 +28,7 @@ function BookSearchPage(props) {
         image: '',
         title: '',
         description: '',
+        isbn: '',
     });
 
     const navigate = useNavigate()
@@ -35,6 +37,7 @@ function BookSearchPage(props) {
     const handleShow = (item) => {
         setShow(true)
         setSelectedItem(item)
+
 
     }
 
@@ -45,8 +48,16 @@ function BookSearchPage(props) {
 
     const handleSubmit = () => {
         navigate({
-            pathname: '/book/new',
+            pathname: `/book/new/${selectedItem.isbn}`
         })
+        // getBook(selectedItem.isbn)
+        //     .then(res => {
+        //         console.log(res)
+        //     })
+        //     .catch((() => {
+        //         console.log("getBook 요청 실패")
+        //     }))
+
     }
 
     return (

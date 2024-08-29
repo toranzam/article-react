@@ -20,7 +20,7 @@ export const getBookList = async (bookName) => {
 
 }
 
-export const getBook = async (isbn) => {
+export const getBookByIsbn = async (isbn) => {
 
     const res = await axios.get(
         `${prefix2}`,
