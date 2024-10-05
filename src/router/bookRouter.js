@@ -9,7 +9,7 @@ const Loading =
     </div>
 
 const Search = lazy(() => import('../pages/book/BookSearchPage'))
-const CreateBookReport = lazy( () => import('../pages/book/CreateBookReportPage'))
+
 
 const bookRouter = () => {
 
@@ -18,10 +18,7 @@ const bookRouter = () => {
             path: '',
             element: <Suspense fallback={Loading}><Search/></Suspense>
         },
-        {
-            path: 'new/:isbn',
-            element: <Suspense fallback={Loading}><CreateBookReport/></Suspense>
-        },
+
 
     ]
 

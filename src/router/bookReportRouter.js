@@ -10,6 +10,7 @@ const Loading =
 
 
 const List = lazy(() => import('../pages/bookReport/BookReportListPage'))
+const CreateBookReport = lazy( () => import('../pages/bookReport/CreateBookReportPage'))
 
 const bookReportRouter = () => {
 
@@ -17,7 +18,11 @@ const bookReportRouter = () => {
         {
             path: '',
             element: <Suspense fallback={Loading}><List/></Suspense>
-        }
+        },
+        {
+            path: 'new/:isbn',
+            element: <Suspense fallback={Loading}><CreateBookReport/></Suspense>
+        },
     ]
 }
 

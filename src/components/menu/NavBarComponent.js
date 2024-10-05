@@ -20,13 +20,13 @@ function NavBarComponent({active}) {
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <Link to={'/article'}
-                                  className={`nav-link ${active === 1 ? "active" : null}`}>Article</Link>
+                                  className={`nav-link ${active === 1 ? "active" : null}`}>자유게시판</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to={'/book'} className={`nav-link ${active === 2 ? "active" : null}`}>BookSearch</Link>
+                            <Link to={'/book'} className={`nav-link ${active === 2 ? "active" : null}`}>책검색</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to={'/bookReport'} className={`nav-link ${active === 3 ? "active" : null}`}>BookReport</Link>
+                            <Link to={'/bookReport'} className={`nav-link ${active === 3 ? "active" : null}`}>독후감</Link>
                         </li>
 
 

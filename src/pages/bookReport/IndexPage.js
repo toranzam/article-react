@@ -6,7 +6,6 @@ function IndexPage(props) {
     return (
         <BasicLayout active={3}>
             <div className={'pt-5 container justify-content-center'}>
-                독후감 페이지
                 <Outlet/>
             </div>
         </BasicLayout>

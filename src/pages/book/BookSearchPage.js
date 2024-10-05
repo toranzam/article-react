@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {getBookByIsbn, getBookList} from "../../api/bookApi";
 import BookModalComponent from "../../components/modal/BookModalComponent";
 import {useNavigate} from "react-router-dom";
-import createBookReportPage from "./CreateBookReportPage";
+import createBookReportPage from "../bookReport/CreateBookReportPage";
 
 
 const initServerData = {
@@ -48,7 +48,7 @@ function BookSearchPage(props) {
 
     const handleSubmit = () => {
         navigate({
-            pathname: `/book/new/${selectedItem.isbn}`
+            pathname: `/bookReport/new/${selectedItem.isbn}`
         })
         // getBook(selectedItem.isbn)
         //     .then(res => {

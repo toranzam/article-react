@@ -14,7 +14,9 @@ const initServerData = {
 
 const initBookReport = {
     title: '',
-    content: ''
+    content: '',
+    isbn: '',
+    image: '',
 }
 
 
@@ -32,17 +34,25 @@ function CreateBookReportPage(props) {
 
     useEffect(() => {
 
-        console.log("CreateBookReportPage")
         getBookByIsbn(isbn)
             .then(res => {
                 setServerData(res)
-                console.log(res)
+                setBookReport(prevState => ({
+                    ...prevState,
+                    isbn: res.items[0].isbn,
+                    image: res.items[0].image,
+                }))
+
+
 
             })
             .catch(res => {
                 console.log(res)
                 console.log("isbn으로 bookDetail를 가져오는데 실패했습니다")
             })
+
+
+
     }, []);
 
     const handleSubmit = () => {
@@ -57,14 +67,17 @@ function CreateBookReportPage(props) {
 
     const handleChangeBookReport = (e) => {
 
-            console.log(e.target.name, e.target.value)
-            bookReport[e.target.name] = e.target.value
-            setBookReport({...bookReport})
-            console.log(bookReport)
+        console.log(e.target.name, e.target.value)
+        bookReport[e.target.name] = e.target.value
+        setBookReport({...bookReport})
+
+        console.log('-------------')
+        console.log(serverDate)
+
+
+        console.log(bookReport)
 
     }
-
-
 
 
     return (
@@ -78,7 +91,7 @@ function CreateBookReportPage(props) {
                         justifyContent: "space-between",
                         gap: "1.5rem"
                     }}>
-                        <div >
+                        <div>
                             <div
                                 style={{
                                     display: "flex",
@@ -129,7 +142,7 @@ function CreateBookReportPage(props) {
                                             width: "100%",
 
 
-                                    }}>
+                                        }}>
                                         {item.title}
                                     </h2>
                                     <p className={'text-white'}
@@ -237,8 +250,6 @@ function CreateBookReportPage(props) {
                             </div>
                         </div>
                     </div>
-
-
                 )}
             <div style={{
                 display: "flex",
@@ -246,7 +257,8 @@ function CreateBookReportPage(props) {
             }}>
                 <div className={'mb-3'}>
                     <label className="form-label">제목</label>
-                    <input name={"title"} className={"form-control"} value={bookReport.title} onChange={handleChangeBookReport}></input>
+                    <input name={"title"} className={"form-control"} value={bookReport.title}
+                           onChange={handleChangeBookReport}></input>
                 </div>
 
                 <ReactQuill
